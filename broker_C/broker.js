@@ -8,7 +8,7 @@ let config = require('./configBroker.json');
 let configClientNTP = require('./configClientNTP.json');
 const { COD_ERROR_TOPICO_INEXISTENTE } = require('./Globals'); // ????
 
-
+require('dotenv').config();
 
 
 // DEBUG_MODE
@@ -16,10 +16,10 @@ const DEBUG_MODE = true;
 
 
 const brokerIp = config.ip;
-const BROKER_PUB_PORT = config.pubPort;
-const BROKER_SUB_PORT = config.subPort;
+const BROKER_PUB_PORT = process.env.pubPort;
+const BROKER_SUB_PORT = process.env.subPort;
 
-const BROKER_REP_PORT = config.repPort;
+const BROKER_REP_PORT = process.env.repPort;
 
 const MAX_MENSAJES_COLA = config.maxMensajesCola;
 const MAX_DIF_TIEMPO_MENSAJE = 1000 * config.maxDifTiempoMensaje; // en milisegundos 300000

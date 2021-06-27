@@ -10,8 +10,9 @@ services:
       ports:
         - "1234:1234"
       depends_on:
-        - "broker"
-    broker:
+        - "broker1"
+        - "broker2"
+    broker1:
       build: ./broker_C
       ports:
         - "3000:3000"
@@ -20,3 +21,20 @@ services:
         - "3003:3003"
       depends_on:
         - "ntp"
+      environment:
+        pubPort: 3000
+        subPort: 3001
+        repPort: 3002
+    broker2:
+      build: ./broker_C
+      ports:
+        - "3004:3004"
+        - "3005:3005"
+        - "3006:3006"
+        - "3007:3007"
+      depends_on:
+        - "ntp"
+      environment:
+        pubPort: 3004
+        subPort: 3005
+        repPort: 3006
