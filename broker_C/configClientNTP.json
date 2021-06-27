@@ -1,0 +1,7 @@
+{
+    "portNTP": 4444,
+    "ipNTP": "ntp",
+    "intervalNTP": 1,
+    "intervalPeriodo": 120,
+    "cantOffsetsNTP": 10
+}
