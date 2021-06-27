@@ -1,5 +1,5 @@
 {
-    "coordinadorIP": "127.0.0.1",
+    "coordinadorIP": "coordinador",
     "coordinadorPuerto": 1234,
     "onlineTolerance": 30,
     "intervalEnvioHeartbeat": 10

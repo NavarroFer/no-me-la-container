@@ -1,12 +1,9 @@
 {
-    "ipCoordinador": "coordinador",
+    "ipCoordinador": "0.0.0.0",
     "ipPuerto": 1234,
     "brokerIpPuerto": [
-        { "ip": "broker", "puertoPub": 3000, "puertoSub": 3001, "puertoRep": 3002 },
-		  { "ip": "broker", "puertoPub": 3004, "puertoSub": 3005, "puertoRep": 3006 },
-		  { "ip": "broker", "puertoPub": 3008, "puertoSub": 3009, "puertoRep": 3010 },
-		  { "ip": "broker", "puertoPub": 3012, "puertoSub": 3013, "puertoRep": 3014 },
-		  { "ip": "broker", "puertoPub": 3016, "puertoSub": 3017, "puertoRep": 3018 }
+        { "ip": "broker", "puertoPub": 3000, "puertoSub": 3001, "puertoRep": 3002 }
+
 
     ]
     

@@ -5,14 +5,12 @@ services:
       build: ./ServidorNTP_C
       ports:
         - "4444:4444"
-      networks:
-        - some-net
     coordinador:
       build: ./coordinador_C
       ports:
         - "1234:1234"
-      networks:
-        - some-net
+      depends_on:
+        - "broker"
     broker:
       build: ./broker_C
       ports:
@@ -22,10 +20,3 @@ services:
         - "3003:3003"
       depends_on:
         - "ntp"
-      networks:
-        - some-net
-      links: 
-        - ntp
-networks:
-  some-net:
-    driver: bridge

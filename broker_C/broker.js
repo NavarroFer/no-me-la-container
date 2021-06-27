@@ -184,6 +184,7 @@ function initRepSocket() {
 
 // se ejecuta cuando me llega una request del coordinador o el server HTTP
 function cbRespondeSolicitud(requestJSON) {
+	console.log(`Me acaban de pedir algo: esto: ${JSON.parse(requestJSON)}`)
 	let request = JSON.parse(requestJSON);
 
 	let topico = request.topico;
@@ -206,7 +207,7 @@ function cbRespondeSolicitud(requestJSON) {
 						accion: globals.COD_ALTA_SUB,
 						topico: globals.HEARTBEAT_TOPIC_NAME
 					};
-
+					console.log(`Voy a solicitar broker sub a coordinador ${messageInicial}`)
 					commsCliente.solicitarBrokerSubACoordinador(messageInicial);
 				}
 

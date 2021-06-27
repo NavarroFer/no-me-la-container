@@ -92,7 +92,7 @@ function obtieneBrokerInicial(topico){
     reqSocketInit.send(JSON.stringify(requestAlBroker));
    
     
-    debugConsoleLog('MANDE');
+    debugConsoleLog(`MANDE SOLICITUD AL BROKER PARA QUE EL TENGA ESTE TOPICO  INICIAL ${topico}`);
 
     
 }
@@ -100,6 +100,7 @@ function obtieneBrokerInicial(topico){
 // asignamos los topicos heartbeat y message/all antes de empezar a atender request
 function cbSocketInit(responseJSON) {
     //Cuando el broker responde la solicitud de creacion del topico
+    console.log(`El broker me respondio la solciitud de acreacion del topico ${responseJSON}`);
     reqSocketInit.close();
     let response = JSON.parse(responseJSON); 
     
@@ -110,13 +111,16 @@ function cbSocketInit(responseJSON) {
         topicoIdBroker[topico] = idBrokerMenosTopicos;
         contadorTopicosPorBroker[idBrokerMenosTopicos]++;
         if (globals.getCantKeys(topicoIdBroker) == 2) { // ya se asignaron heartbeat y message/all a un broker.
+            console.log('Ya asigne heartbeat y message all.,.. a escuchar!!!')
             repSocket.bind(`tcp://${ipCoordinador}:${puertoCoordinador}`); // aca empieza a escuchar requests
             debugConsoleLog(`Escuchando a Clientes en: ${puertoCoordinador}`);
         } else {
+            console.log(`Ya pedi el heartboat voy a pedir el message all!!!`)
             obtieneBrokerInicial('message/all');
         }
     }
     else {
+        console.log(`Estamos mal`);
         // TODO: Mandar respuesta al cliente de que no hubo exito.
     }
 }
@@ -125,7 +129,7 @@ function cbSocketInit(responseJSON) {
 
 function cbBrokerAceptoTopico(responseJSON) { //Cuando el broker responde la solicitud de creacion del topico
     let response = JSON.parse(responseJSON);
-    console.log(response);
+    console.log(`UN BROKER ME RESPONDIO: ${response}`);
     // Respuesta exitosa
     if (response && response.exito) {
         if (pendingRequests.hasOwnProperty(response.idPeticion)) {
@@ -160,6 +164,7 @@ function cbBrokerAceptoTopico(responseJSON) { //Cuando el broker responde la sol
 
 function cbRespondeRequestDeCliente(requestJSON) { //un cliente quiere saber donde estan 1 o 3 topicos
     // Paso a objeto la request
+    console.log(`Me hablo un cliente! object object`)
     let request = JSON.parse(requestJSON);
 
     console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAA');
@@ -243,7 +248,7 @@ function enviarAsignacionTopicoBroker(request){
     reqSocket.send(JSON.stringify(requestAlBroker));
     
     
-    debugConsoleLog('MANDE');
+    debugConsoleLog(`MANDE SOLICITUD AL BROKER PARA QUE EL TENGA ESTE TOPICO NUEVO: ${request.topico}`);
 }
        
 
