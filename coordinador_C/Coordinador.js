@@ -206,7 +206,7 @@ function enviarBrokerSegunTopicoExistente(solicitudDeCliente){
         datosBroker: [
             {
                 topico: solicitudDeCliente.topico,
-                ip:  brokerIpPuerto[topicoIdBroker[solicitudDeCliente.topico]].ip,
+                ip:  brokerIpPuerto[topicoIdBroker[solicitudDeCliente.topico]].ipParaMandar,
                 puerto: puertoEnviado,
             }
         ],
@@ -274,7 +274,7 @@ function procesarSolicitudPublicacion(request){
 function enviarTriplaTopicosSubACliente(idPeticion){
     let brokerTopicoPedido = {
         topico: pendingRequests[idPeticion].requestDelCliente.topico,
-        ip:  brokerIpPuerto[pendingRequests[idPeticion].idBroker].ip,
+        ip:  brokerIpPuerto[pendingRequests[idPeticion].idBroker].ipParaMandar,
         puerto: brokerIpPuerto[pendingRequests[idPeticion].idBroker].puertoPub,
     }
     
@@ -282,12 +282,12 @@ function enviarTriplaTopicosSubACliente(idPeticion){
             datosBroker: [ 
                 {
                     topico: 'message/all',
-                    ip:  brokerIpPuerto[topicoIdBroker['message/all']].ip,
+                    ip:  brokerIpPuerto[topicoIdBroker['message/all']].ipParaMandar,
                     puerto: brokerIpPuerto[topicoIdBroker['message/all']].puertoPub,
                 },
                 {
                     topico: 'heartbeat',
-                    ip:  brokerIpPuerto[topicoIdBroker['heartbeat']].ip,
+                    ip:  brokerIpPuerto[topicoIdBroker['heartbeat']].ipParaMandar,
                     puerto: brokerIpPuerto[topicoIdBroker['heartbeat']].puertoPub,
                 }                    
             ],

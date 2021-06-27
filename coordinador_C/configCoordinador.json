@@ -2,7 +2,7 @@
     "ipCoordinador": "0.0.0.0",
     "ipPuerto": 1234,
     "brokerIpPuerto": [
-        { "ip": "broker", "puertoPub": 3000, "puertoSub": 3001, "puertoRep": 3002 }
+        { "ip": "broker", "ipParaMandar":"127.0.0.1", "puertoPub": 3000, "puertoSub": 3001, "puertoRep": 3002 }
 
 
     ]
