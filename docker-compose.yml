@@ -38,3 +38,11 @@ services:
         pubPort: 3004
         subPort: 3005
         repPort: 3006
+    servidorhttp:
+      build: ./ServidorHTTP_C
+      ports:
+        - "9123:9123"
+      depends_on:
+        - "broker1"
+        - "broker2"
+    
