@@ -1,7 +1,7 @@
 const repl = require('repl');
 const CLIENT = require('./Cliente');
-const globals = require('../Global/Globals');
-const { GROUP_ID_PREFIX } = require('../Global/Globals');
+const globals = require('./Globals');
+const { GROUP_ID_PREFIX } = require('./Globals');
 
 
 const COMMAND_CHAR = '';

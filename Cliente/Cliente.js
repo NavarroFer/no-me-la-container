@@ -1,12 +1,12 @@
-const globals = require('../Global/Globals');
-const commsCliente = require('../Publicador/commsCliente');
+const globals = require('./Globals');
+const commsCliente = require('./Publicador/commsCliente');
 
 let config = require('./configCliente.json');
-let configClientNTP = require('../Global/configClientNTP.json');
+let configClientNTP = require('./configClientNTP.json');
 
 
 // DEBUG_MODE
-const DEBUG_MODE = true;
+const DEBUG_MODE = false;
 
 let userId = 'DefaultUser'; // En teoría, nunca debería quedar DefaultUser. Se deja por las dudas.
 
@@ -16,7 +16,7 @@ let coordinadorPuerto = config.coordinadorPuerto;
 
 //SERVER NTP
 const net = require('net');
-const { pendingPublications } = require('../Publicador/commsCliente');
+const { pendingPublications } = require('./Publicador/commsCliente');
 
 const portNTP = configClientNTP.portNTP;
 const NTP_IP = configClientNTP.ipNTP;
@@ -118,8 +118,8 @@ function initClientNTP() {
         offsetAvg += offsetDelNTP / TOTAL_ITERACIONES_NTP;
 
 
-        //debugConsoleLog('offset red:\t\t' + offsetDelNTP + ' ms');
-        //debugConsoleLog('---------------------------------------------------');
+        debugConsoleLog('offset red:\t\t' + offsetDelNTP + ' ms');
+        debugConsoleLog('---------------------------------------------------');
     });
 
 }
@@ -134,8 +134,8 @@ function sincronizacionNTP() {
 }
 
 async function endClientNTP() {
-    await clientNTP.end();
     clientNTP.on('end', () => process.exit());
+    await clientNTP.end();
 }
 
 
